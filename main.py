@@ -2,9 +2,20 @@
 # Se comienza el proyecto ordenando las variables y condicionales
 
 validacion = True               # esta variable sirve para controlar el menu principal
-cantidad = 0                    # Esta variable es la cantidad de productos disponibles, se inicializa como 0
+cantidad = 1                    # Esta variable es la cantidad de productos disponibles, se inicializa como 0
+
+
+                # inventario predeterminado
+pantalonetas_azules = {"nombre":"Pantalonetas Azules", "precio":12000,"cantidad":10,"codigo":1212}
+bikinis_rojos = {"nombre":"Bikinis Rojos", "precio":15000,"cantidad":15,"codigo":2222}
+pantalonetas_verdes = {"nombre":"Pantalonetas Verdes", "precio":12000,"cantidad":10,"codigo":1111}
+
+
+inventario = [pantalonetas_azules, bikinis_rojos, pantalonetas_verdes]
+
 
 while validacion == True:       # Este while nos permite crear un bucle al menu principal
+
 
     print("Bienvenido al sistema en linea de vestidos de baño")
 
@@ -15,6 +26,8 @@ while validacion == True:       # Este while nos permite crear un bucle al menu 
     print("(5) Salir")
 
     opcion_usuario = int(input("Digite la opcion que necesita: "))
+
+            # menu de inventario
 
     if opcion_usuario == 1:
         print("Bienvenido al inventario: ")
@@ -38,14 +51,25 @@ while validacion == True:       # Este while nos permite crear un bucle al menu 
 
                 print("Productos ingresados correctamente ")
 
+
+
         elif opcion_usuario2 == 2:                          # Este es el menu de modificar productos
             if cantidad != 0:
                 producto_escogido = (input("Que producto deseas escoger? "))
 
-                print("Los datos de los productos son: ")
-                print(f"(1) Codigo de producto: {codigo_producto} ")
-                print(f"(2) Precio de producto: {precio_producto} ")
-                print(f"(3) La cantidad disponble: {cantidad_producto} ")
+                # print("Los datos de los productos son: ")
+                # print(f"(1) Codigo de producto: {codigo_producto} ")
+                # print(f"(2) Precio de producto: {precio_producto} ")
+                # print(f"(3) La cantidad disponble: {cantidad_producto} ")
+
+                for i in inventario:
+                   print(f"Productos disponibles")
+
+                   print(f"Nombre: {i['nombre']}", end=' , ')
+                   print(f"Precio: {i['precio']}", end=' , ')
+                   print(f"Cantidad: {i['cantidad']}", end=' , ')
+                   print(f"Codigo: {i['codigo']}", end=' , ')
+
 
                 opcion = int(input("Que deseas modificar: "))
 
@@ -69,15 +93,26 @@ while validacion == True:       # Este while nos permite crear un bucle al menu 
                 print("No hay productos disponibles todavia")
 
 
+
         elif opcion_usuario2 == 3:       # Este es el menu de eliminar producto
             print("Trabajo en progreso...")
+
+
+
 
         elif opcion_usuario2 == 4:         # Este es el menu de consultas de inventario
             print("Trabajo en progreso...")
 
+
+
+
         elif opcion_usuario2 == 5:
             print("Saliendo del programa...")
 
+
+
+
+            # menu de ventas
 
     elif opcion_usuario == 2:          # Este es el menu de ventas
         print("Bienvenido al menu de ventas: ")
@@ -102,9 +137,17 @@ while validacion == True:       # Este while nos permite crear un bucle al menu 
             print("saliendo del programa...")
 
 
+
+
+                # menu de reportes generales
+
     elif opcion_usuario == 3:         # Este es el menu de reportes generales
         print( "Trabajo en progreso: ")
 
+
+
+
+            # menu de reclamos
 
     elif opcion_usuario == 4:          # Este es el menu de reclamos
 
@@ -116,6 +159,11 @@ while validacion == True:       # Este while nos permite crear un bucle al menu 
             pass  # Aqui se almacenaran los reclamos en una lista para despues guardarse en un archivo txt
 
         print("Trabajo en progreso...")
+
+
+
+
+                # opcion para cerrar el programa
 
 
     elif opcion_usuario == 5:        # esta es la opcion para cerrar el programa

@@ -1,9 +1,7 @@
 
-# Se comienza el proyecto ordenando las variables y condicionales
+
 
 validacion = True               # esta variable sirve para controlar el menu principal
-cantidad = 1                    # Esta variable es la cantidad de productos disponibles, se inicializa como 0
-
 
                 # inventario predeterminado
 pantalonetas_azules = {"nombre":"Pantalonetas Azules", "precio":12000,"cantidad":10,"codigo":1212}
@@ -11,8 +9,11 @@ bikinis_rojos = {"nombre":"Bikinis Rojos", "precio":15000,"cantidad":15,"codigo"
 pantalonetas_verdes = {"nombre":"Pantalonetas Verdes", "precio":12000,"cantidad":10,"codigo":1111}
 
 
-inventario = [pantalonetas_azules, bikinis_rojos, pantalonetas_verdes]
+inventario = [pantalonetas_azules, bikinis_rojos, pantalonetas_verdes]   # lista que almacena todos los direccionarios, "productos con sus datos"
+cantidad = len(inventario)                    # Esta variable es la cantidad de productos disponibles, se inicializa con la funcion len para medir el inventario
 
+
+            # inicio del programa
 
 while validacion == True:       # Este while nos permite crear un bucle al menu principal
 
@@ -44,13 +45,19 @@ while validacion == True:       # Este while nos permite crear un bucle al menu 
             cantidad = int(input("Cuantos productos desea ingresar: "))
 
             for i in range(cantidad):               # Aqui se ingresan los datos especificos de cada producto
+                producto_agregado = {}
+
                 nombre_producto = input("Ingresa el nombre del producto: ")
-                codigo_producto = int(input("Ingresa el codigo del producto: "))
                 precio_producto = int(input("Ingresa el precio del producto: "))
                 cantidad_producto = int(input("Ingresa el cantidad del producto: "))
+                codigo_producto = int(input("Ingresa el codigo del producto: "))
 
-                print("Productos ingresados correctamente ")
+                producto_agregado = {'nombre': nombre_producto, "precio":precio_producto, "cantidad": cantidad_producto, "codigo":codigo_producto}
 
+                inventario.append(producto_agregado)   # con la funcion append se agrega el diccionario a la lista del inventario
+                print("Productos agregados correctamente al inventario.... ")
+
+                producto_agregado = {}  # el diccionario se limpia, para poder seguir agregando otros productos y que no se colapse de informacion
 
 
         elif opcion_usuario2 == 2:                          # Este es el menu de modificar productos
@@ -108,6 +115,15 @@ while validacion == True:       # Este while nos permite crear un bucle al menu 
 
         elif opcion_usuario2 == 5:
             print("Saliendo del programa...")
+
+
+
+
+
+
+
+
+
 
 
 

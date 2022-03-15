@@ -61,40 +61,60 @@ while validacion == True:       # Este while nos permite crear un bucle al menu 
 
 
         elif opcion_usuario2 == 2:                          # Este es el menu de modificar productos
+
             if cantidad != 0:
-                producto_escogido = (input("Que producto deseas escoger? "))
 
-                # print("Los datos de los productos son: ")
-                # print(f"(1) Codigo de producto: {codigo_producto} ")
-                # print(f"(2) Precio de producto: {precio_producto} ")
-                # print(f"(3) La cantidad disponble: {cantidad_producto} ")
-
+                print(f"Productos disponibles")
+                contador = 0  # este contador sirve para numerar los tipos de productos
                 for i in inventario:
-                   print(f"Productos disponibles")
 
-                   print(f"Nombre: {i['nombre']}", end=' , ')
+                   print(f"({contador}) Nombre: {i['nombre']}", end=' , ')
                    print(f"Precio: {i['precio']}", end=' , ')
                    print(f"Cantidad: {i['cantidad']}", end=' , ')
-                   print(f"Codigo: {i['codigo']}", end=' , ')
+                   print(f"Codigo: {i['codigo']}", end='  ')
+                   print("")
+                   contador += 1
 
+                producto_escogido = (int(input("Que producto deseas escoger? ")))
+                producto_escogido = inventario[producto_escogido]  # se le asigna a la variable el diccionario escogido
+
+                print(f"producto escogido: {producto_escogido['nombre']}")
+
+                print("(1) - Nombre")
+                print("(2) - Precio")
+                print("(3) - Cantidad")
+                print("(4) - Codigo")
 
                 opcion = int(input("Que deseas modificar: "))
 
-                if opcion == 1:                    # menu "modificar el codigo de producto"
+                if opcion == 1:  # menu "modificar el nombre de producto"
 
-                    codigo_producto = int(input("Ingresa nuevamente el codigo del producto "))
-                    print(f"Completado, ahora la cantidad es de {codigo_producto}")
+                    nombre_producto = input("Ingresa nuevamente el nombre del producto ")
+                    producto_escogido["nombre"] = nombre_producto
 
-                elif opcion == 2:                 # menu "modificar el precio de proucto"
+                    print(f"Completado, ahora el nombre es {nombre_producto}")
+
+                elif opcion == 2:  # menu "modificar el precio de proucto"
 
                     precio_producto = int(input("Ingresa nuevamente el precio del producto "))
-                    print(f"Completado, ahora la cantidad es de {precio_producto}")
+                    producto_escogido["precio"] = precio_producto
+
+                    print(f"Completado, ahora el precio es de {precio_producto}")
 
 
-                elif opcion == 3:                  # menu "modificar cantidad de productos"
+                elif opcion == 3:  # menu "modificar cantidad de productos"
 
                     cantidad_producto = int(input("Ingresa nuevamente la cantidad del producto: "))
+                    producto_escogido["cantidad"] = cantidad_producto
+
                     print(f"Completado, ahora la cantidad es de {cantidad_producto}")
+
+                elif opcion == 4:  # menu "modificar codigo de productos"
+
+                    codigo_producto = int(input("Ingresa nuevamente el codigo del producto: "))
+                    producto_escogido["codigo"] = codigo_producto
+
+                    print(f"Completado, ahora el codigo es {codigo_producto}")
 
             else:
                 print("No hay productos disponibles todavia")

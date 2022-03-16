@@ -1,7 +1,7 @@
 
 
 
-validacion = True               # esta variable sirve para controlar el menu principal
+
 
                 # inventario predeterminado
 pantalonetas_azules = {"nombre":"Pantalonetas Azules", "precio":12000,"cantidad":10,"codigo":1212}
@@ -15,6 +15,7 @@ cantidad = len(inventario)    # el metodo len nos da la longitud de indices del 
 
             # inicio del programa
 
+validacion = True               # esta variable sirve para controlar el menu principal
 while validacion == True:       # Este while nos permite crear un bucle al menu principal
 
 
@@ -139,13 +140,50 @@ while validacion == True:       # Este while nos permite crear un bucle al menu 
 
 
         elif opcion_usuario2 == 4:         # Este es el menu de consultas de inventario
-            print("Trabajo en progreso...")
+            print("Bienvenido al menu de consultas de inventario")
+            print("(1) Consultar por codigo")
+            print("(2) Consulta general")
+            print("(3) Consultar por precio")
+            print("(4) Desplegar a un archivo plano el inventario")
+
+            opcion_usuario2 = int(input("Digite la opcion que necesita: "))
+
+
+
+            if opcion_usuario2 == 1:    # menu consulta por codigo
+                codigo_buscador = int(input("Ingresa el codigo que buscas: "))
+
+                for i in inventario:
+                    if i['codigo'] == codigo_buscador:
+                        print(f"El producto buscado es {i}")
+
+
+            elif opcion_usuario2 == 2:    # menu consulta general
+
+                print(f"Productos disponibles")
+                contador = 0  # este contador sirve para numerar los tipos de productos
+                for i in inventario:
+                    print(f"({contador}) Nombre: {i['nombre']}", end=' , ')
+                    print(f"Precio: {i['precio']}", end=' , ')
+                    print(f"Cantidad: {i['cantidad']}", end=' , ')
+                    print(f"Codigo: {i['codigo']}", end='  ')
+                    print("")
+                    contador += 1
+
+
+            elif opcion_usuario2 == 3:    # menu consulta por precio
+                pass
+
+
+
+            elif opcion_usuario2 == 4:
+                print("Trabajo en progreso...")
 
 
 
 
         elif opcion_usuario2 == 5:
-            print("Saliendo del programa...")
+            print("Saliendo del menu...")
 
 
 

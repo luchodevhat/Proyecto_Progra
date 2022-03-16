@@ -10,7 +10,7 @@ pantalonetas_verdes = {"nombre":"Pantalonetas Verdes", "precio":12000,"cantidad"
 
 
 inventario = [pantalonetas_azules, bikinis_rojos, pantalonetas_verdes]   # lista que almacena todos los direccionarios, "productos con sus datos"
-cantidad = len(inventario)                    # Esta variable es la cantidad de productos disponibles, se inicializa con la funcion len para medir el inventario
+cantidad = len(inventario)    # el metodo len nos da la longitud de indices del inventario, para saber su cantidad especifica de productos
 
 
             # inicio del programa
@@ -122,9 +122,20 @@ while validacion == True:       # Este while nos permite crear un bucle al menu 
 
 
         elif opcion_usuario2 == 3:       # Este es el menu de eliminar producto
-            print("Trabajo en progreso...")
+            print(f"Productos disponibles a eliminar")
+            contador = 0  # este contador sirve para numerar los tipos de productos
+            for i in inventario:
+                print(f"({contador}) Nombre: {i['nombre']}", end=' , ')
+                print(f"Precio: {i['precio']}", end=' , ')
+                print(f"Cantidad: {i['cantidad']}", end=' , ')
+                print(f"Codigo: {i['codigo']}", end='  ')
+                print("")
+                contador += 1
 
+            producto_escogido = (int(input("Que producto deseas eliminar? ")))
 
+            inventario.pop(producto_escogido)
+            print("El producto se ha eliminado exitosamente...")
 
 
         elif opcion_usuario2 == 4:         # Este es el menu de consultas de inventario

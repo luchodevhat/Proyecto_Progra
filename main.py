@@ -154,7 +154,7 @@ while validacion == True:       # Este while nos permite crear un bucle al menu 
                 codigo_buscador = int(input("Ingresa el codigo que buscas: "))
 
                 for i in inventario:
-                    if i['codigo'] == codigo_buscador:
+                    if i['codigo'] == codigo_buscador:                                                        # repetitivo 1
                         print(f"El producto buscado es {i}")
 
 
@@ -172,11 +172,24 @@ while validacion == True:       # Este while nos permite crear un bucle al menu 
 
 
             elif opcion_usuario2 == 3:    # menu consulta por precio
-                pass
+                codigo_buscador = int(input("Ingresa el precio de producto que buscas: "))
+
+                for i in inventario:
+                    if i['precio'] == codigo_buscador:                                                       # repetitivo 2
+                        print(f"El producto buscado es {i}")
 
 
 
-            elif opcion_usuario2 == 4:
+
+
+
+
+
+
+
+
+
+        elif opcion_usuario2 == 4:
                 print("Trabajo en progreso...")
 
 

@@ -26,7 +26,7 @@ def menu_inventario(cantidad):  # menu del inventario
 
             producto_agregado = {'nombre': nombre_producto, "precio": precio_producto, "cantidad": cantidad_producto, "codigo": codigo_producto}
 
-            inventario.append(producto_agregado)  # con la funcion append se agrega el diccionario a la lista del inventario
+            inventario.append(producto_agregado)  # con la metodo append se agrega el diccionario a la lista del inventario
             print("Productos agregados correctamente al inventario.... ")
 
             producto_agregado = {}  # el diccionario se limpia, para poder seguir agregando otros productos y que no se colapse de informacion
@@ -35,6 +35,7 @@ def menu_inventario(cantidad):  # menu del inventario
     elif opcion_usuario2 == 2:  # Este es el menu de modificar productos
 
         if cantidad != 0:
+            print(f"Productos disponibles")
             mostrar_productos()
 
             producto_escogido = (int(input("Que producto deseas escoger? ")))
@@ -75,6 +76,7 @@ def menu_inventario(cantidad):  # menu del inventario
 
 
     elif opcion_usuario2 == 3:  # Este es el menu de eliminar producto
+        print(f"Productos disponibles")
         mostrar_productos()
 
         producto_escogido = (int(input("Que producto deseas eliminar? ")))
@@ -97,6 +99,7 @@ def menu_inventario(cantidad):  # menu del inventario
             buscar_porDato(codigo_buscador, elemento="codigo")
 
         elif opcion_usuario2 == 2:    # menu de consulta general
+            print(f"Productos disponibles")
             mostrar_productos()
 
         elif opcion_usuario2 == 3:  # menu consulta por precio
@@ -114,14 +117,57 @@ def menu_inventario(cantidad):  # menu del inventario
 def menu_ventas():
     pass
 
+
+
 def menu_reportesGenerales():
     pass
 
-def menu_reclamos():
-    pass
 
 
-                    # Funciones que sirven como herramientas para los menus, para no repetir codigo
+def menu_reclamos(reclamos_inventario):
+    print("Menú de reclamos")
+
+    print("(1)  Anotar el reclamos correspondientes")
+    print("(2)  Cantidad de reclamos ingresados")
+    print("(3)  Devolverse al menú principal")
+
+    opcion_usuario4 = int(input("Digite la opcion que necesita: "))
+
+    if opcion_usuario4 == 1:
+
+        reclamo_agregado = {}
+        print("Complete la siguiente informacion: ")
+
+        nombre_completo = input("Ingrese su nombre completo: ")
+        numero_telefonico = int(input("Ingrese su número de telefono: "))
+        correo_electronico = input("Ingrese su correo electronico: ")
+
+        reclamo_agregado = {'nombre': nombre_completo, "numero_tel": numero_telefonico, "correo": correo_electronico}
+        print("Informacion guardada correctamente....")
+
+        ingresar_reclamo = input(f"redacte su reclamo: ")
+        reclamo_agregado["reclamo"] = ingresar_reclamo
+
+        reclamos_inventario.append(reclamo_agregado)  # con la metodo append se agrega el diccionario a la lista del inventario de reclamos
+        print("¡Gracias por sus observaciones los reclamos han sido guardados correctamente!")
+
+
+    elif opcion_usuario4 == 2:
+
+        print(f"Reclamos ingresados")
+        contador = 0  # este contador sirve para numerar los tipos de productos
+
+        for i in reclamos_inventario:
+            print(f"({contador+1}) Nombre: {i['nombre']}", end=' , ')
+            print(f"numero telefono: {i['numero_tel']}", end=' , ')
+            print(f"correo: {i['correo']}", end=' , ')
+            print(f"reclamo: {i['reclamo']}", end='  ')
+            print("")
+            contador += 1
+
+
+
+        # Funciones que sirven como herramientas para los menus, para no repetir codigo
 
 def buscar_porDato(codigo_buscador, elemento):
     for i in inventario:
@@ -130,7 +176,6 @@ def buscar_porDato(codigo_buscador, elemento):
 
 
 def mostrar_productos():
-    print(f"Productos disponibles")
 
     contador = 0  # este contador sirve para numerar los tipos de productos
     for i in inventario:
@@ -146,9 +191,14 @@ def modificar_producto(producto_escogido, nombre_producto, elemento):
     print(f"Completado, ahora el {elemento} es {nombre_producto}")
 
 
+
+
+                # inicio del programa
+
 if __name__ == '__main__':
 
-    # inventario predeterminado
+    # inventario predeterminado productos
+
     pantalonetas_azules = {"nombre": "Pantalonetas Azules", "precio": 12000, "cantidad": 10, "codigo": 1212}
     bikinis_rojos = {"nombre": "Bikinis Rojos", "precio": 15000, "cantidad": 15, "codigo": 2222}
     pantalonetas_verdes = {"nombre": "Pantalonetas Verdes", "precio": 12000, "cantidad": 10, "codigo": 1111}
@@ -156,7 +206,10 @@ if __name__ == '__main__':
     inventario = [pantalonetas_azules, bikinis_rojos,pantalonetas_verdes]  # lista que almacena todos los direccionarios, "productos con sus datos"
     cantidad = len(inventario)  # el metodo len nos da la longitud de indices del inventario, para saber su cantidad especifica de productos
 
-    # inicio del programa
+            # inventario reclamos
+
+    reclamos_inventario = []
+
 
     validacion = True  # esta variable sirve para controlar el menu principal
     while validacion == True:  # Este while nos permite crear un bucle al menu principal
@@ -179,28 +232,7 @@ if __name__ == '__main__':
                 # menu de ventas
 
         elif opcion_usuario == 2:  # Este es el menu de ventas
-            print("Bienvenido al menu de ventas: ")
-
-            print("(1)  Mostrar productos disponibles: ")
-            print("(2)  Realizar la venta: ")
-            print("(3)  Generar factura final ")
-            print("(4)  Devolverse al menu principal:")
-
-            opcion_usuario2 = int(input("Digite la opcion que necesita: "))
-
-            if opcion_usuario2 == 1:
-                print("Trabajo en progreso... ")
-
-            elif opcion_usuario2 == 2:
-                print("Trabajo en progreso... ")
-
-            elif opcion_usuario2 == 3:
-                print("Trabajo en progreso...")
-
-            elif opcion_usuario2 == 4:
-                print("saliendo del programa...")
-
-                # menu de reportes generales
+            menu_ventas()
 
         elif opcion_usuario == 3:  # Este es el menu de reportes generales
             print("Trabajo en progreso: ")
@@ -208,17 +240,7 @@ if __name__ == '__main__':
             # menu de reclamos
 
         elif opcion_usuario == 4:  # Este es el menu de reclamos
-
-            nombre_usuario = input("Estimado usuario, digite su nombre para proceder ")
-
-            cantidad_reclamos = int(input("Cuantos reclamos deseas ingresar? "))
-
-            for i in range(cantidad_reclamos):
-                pass  # Aqui se almacenaran los reclamos en una lista para despues guardarse en un archivo txt
-
-            print("Trabajo en progreso...")
-
-            # opcion para cerrar el programa
+            menu_reclamos(reclamos_inventario)
 
 
         elif opcion_usuario == 5:  # esta es la opcion para cerrar el programa

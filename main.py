@@ -282,8 +282,7 @@ if __name__ == '__main__':
     historial_venta = []
     reclamos_inventario = []
 
-    validacion = True  # esta variable sirve para controlar el menu principal
-    while validacion == True:  # Este while nos permite crear un bucle al menu principal
+    while True:  # Este while nos permite crear un bucle al menu principal
 
         print("Bienvenido al sistema en linea de vestidos de baño")
 
@@ -300,14 +299,13 @@ if __name__ == '__main__':
         if opcion_usuario == 1:
             menu_inventario(cantidad)
 
-
                 # menu de ventas
 
         elif opcion_usuario == 2:  # Este es el menu de ventas
             menu_ventas()
 
         elif opcion_usuario == 3:  # Este es el menu de reportes generales  esto se continuara hasta trabajar con archivos de texto plano
-            print("Trabajo en progreso: ")
+            menu_reportesGenerales()
 
             # menu de reclamos
 
@@ -318,8 +316,8 @@ if __name__ == '__main__':
             # salir del programa
 
         elif opcion_usuario == 5:  # esta es la opcion para cerrar el programa
-            validacion = False
             print("Saliendo del programa, !Gracias por preferirnos¡ ... ")
+            break
 
 
 

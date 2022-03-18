@@ -115,13 +115,81 @@ def menu_inventario(cantidad):  # menu del inventario
 
 
 def menu_ventas():
+
+    print("Bienvenido al menu de ventas: ")
+
+    print("(1)  Mostrar productos disponibles: ")
+    print("(2)  Realizar la venta: ")
+    print("(3)  Generar factura final ")
+    print("(4)  Devolverse al menu principal:")
+
+    opcion_usuario2 = int(input("Digite la opcion que necesita: "))
+
+    if opcion_usuario2 == 1:
+        print("Productos disponibles: ")
+        mostrar_productos()
+
+    elif opcion_usuario2 == 2:
+
+        x = 0  # Se define a x como la condicional que nos dicta si se encontro un producto o no
+        compra = int(input("Ingrese el codigo de la prenda: "))
+
+        for i in inventario:
+            x = i.get("codigo")
+
+            if int(x) == compra:
+                x += 1  # Se encontro el producto, por lo tanto, x es igual a 1
+                cantidad = int(input("Digite la cantidad que desea comprar: "))
+
+                if i.get("cantidad") < cantidad:
+                    print("La cantidad ordenada excede la cantidad disponible")
+
+                if i.get("cantidad") >= cantidad:
+
+                    nombre = input("Ingrese su nombre: ")
+                    cedula = int(input("Digite su cedula: "))
+                    telefono = int(input("Digite su numero de telefono: "))
+                    direccion = input("Ingrese su direccion: ")
+                    desc = 0
+
+                    total = cantidad * i.get("precio")
+                    if cantidad >= 5:
+                        total = total * 0.85
+                        desc = 1
+
+                    if desc == 1:
+                        venta_agregada = {'nombre': nombre, "cedula": cedula,
+                                          "telefono": telefono, "direccion": direccion,
+                                          "producto": i.get("nombre"), "cantidad": cantidad,
+                                          "total": total, "descuento": "15%"}
+                    else:
+                        venta_agregada = {'nombre': nombre, "cedula": cedula,
+                                          "telefono": telefono, "direccion": direccion,
+                                          "producto": i.get("nombre"), "cantidad": cantidad,
+                                          "total": total, "descuento": 0}
+
+                    historial_venta.append(venta_agregada)
+                    print("nombre: ", venta_agregada.get("nombre"))
+                    print("cedula: ", venta_agregada.get("cedula"))
+                    print("telefono: ", venta_agregada.get("telefono"))
+                    print("direccion: ", venta_agregada.get("direccion"))
+                    print("producto: ", venta_agregada.get("producto"))
+                    print("cantidad: ", venta_agregada.get("cantidad"))
+                    print("descuento: ", venta_agregada.get("descuento"))
+                    print("total: ", venta_agregada.get("total"))
+                    temp = i.get("cantidad")
+                    temp = temp - cantidad
+
+                    i["cantidad"] = temp
+                    venta_agregada = {}
+
+        if x == 0:  # Si la funcion termina  y x es igual a 0 significa que no se encontro ese producto
+            print("Este producto no existe")
+
+
+
+def menu_reportesGenerales():             # hasta trabajar con archivos planos se agregara este menu
     pass
-
-
-
-def menu_reportesGenerales():
-    pass
-
 
 
 def menu_reclamos(reclamos_inventario):
@@ -150,6 +218,8 @@ def menu_reclamos(reclamos_inventario):
 
         reclamos_inventario.append(reclamo_agregado)  # con la metodo append se agrega el diccionario a la lista del inventario de reclamos
         print("¡Gracias por sus observaciones los reclamos han sido guardados correctamente!")
+        print("Si querés una observación más detalla sobre tu problema mandanos tus consultas a este correo PymesTrajescr@gmail.com")
+
 
 
     elif opcion_usuario4 == 2:
@@ -164,6 +234,7 @@ def menu_reclamos(reclamos_inventario):
             print(f"reclamo: {i['reclamo']}", end='  ')
             print("")
             contador += 1
+
 
 
 
@@ -208,8 +279,8 @@ if __name__ == '__main__':
 
             # inventario reclamos
 
+    historial_venta = []
     reclamos_inventario = []
-
 
     validacion = True  # esta variable sirve para controlar el menu principal
     while validacion == True:  # Este while nos permite crear un bucle al menu principal
@@ -242,6 +313,8 @@ if __name__ == '__main__':
         elif opcion_usuario == 4:  # Este es el menu de reclamos
             menu_reclamos(reclamos_inventario)
 
+
+            # salir del programa
 
         elif opcion_usuario == 5:  # esta es la opcion para cerrar el programa
             validacion = False

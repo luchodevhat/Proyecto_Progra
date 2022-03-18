@@ -2,7 +2,7 @@
             # Funciones de los menus principales
 
 def menu_inventario(cantidad):  # menu del inventario
-    print("hola")
+
     print("Bienvenido al inventario: ")
 
     print("(1)  Agregar productos")

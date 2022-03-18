@@ -277,7 +277,7 @@ if __name__ == '__main__':
     inventario = [pantalonetas_azules, bikinis_rojos,pantalonetas_verdes]  # lista que almacena todos los direccionarios, "productos con sus datos"
     cantidad = len(inventario)  # el metodo len nos da la longitud de indices del inventario, para saber su cantidad especifica de productos
 
-            # inventario reclamos
+            # inventario reclamos e historial de ventas
 
     historial_venta = []
     reclamos_inventario = []
@@ -300,12 +300,13 @@ if __name__ == '__main__':
         if opcion_usuario == 1:
             menu_inventario(cantidad)
 
+
                 # menu de ventas
 
         elif opcion_usuario == 2:  # Este es el menu de ventas
             menu_ventas()
 
-        elif opcion_usuario == 3:  # Este es el menu de reportes generales
+        elif opcion_usuario == 3:  # Este es el menu de reportes generales  esto se continuara hasta trabajar con archivos de texto plano
             print("Trabajo en progreso: ")
 
             # menu de reclamos

@@ -248,41 +248,7 @@ def buscar_porDato(codigo_buscador, elemento):
 
 def mostrar_productos():
 
-    contador = 0  # este contador sirve para numerar los tipos de productos
-    for i in inventario:
-        print(f"({contador}) Nombre: {i['nombre']}", end=' , ')
-        print(f"Precio: {i['precio']}", end=' , ')
-        print(f"Cantidad: {i['cantidad']}", end=' , ')
-        print(f"Codigo: {i['codigo']}", end='  ')
-        print("")
-        contador += 1
 
-def modificar_producto(producto_escogido, nombre_producto, elemento):
-    producto_escogido[elemento] = nombre_producto
-    print(f"Completado, ahora el {elemento} es {nombre_producto}")
-
-
-
-
-                # inicio del programa
-
-if __name__ == '__main__':
-
-    # inventario predeterminado productos
-
-    pantalonetas_azules = {"nombre": "Pantalonetas Azules", "precio": 12000, "cantidad": 10, "codigo": 1212}
-    bikinis_rojos = {"nombre": "Bikinis Rojos", "precio": 15000, "cantidad": 15, "codigo": 2222}
-    pantalonetas_verdes = {"nombre": "Pantalonetas Verdes", "precio": 12000, "cantidad": 10, "codigo": 1111}
-
-    inventario = [pantalonetas_azules, bikinis_rojos,pantalonetas_verdes]  # lista que almacena todos los direccionarios, "productos con sus datos"
-    cantidad = len(inventario)  # el metodo len nos da la longitud de indices del inventario, para saber su cantidad especifica de productos
-
-            # inventario reclamos e historial de ventas
-
-    historial_venta = []
-    reclamos_inventario = []
-
-    validacion = True  # esta variable sirve para controlar el menu principal
     while validacion == True:  # Este while nos permite crear un bucle al menu principal
 
         print("Bienvenido al sistema en linea de vestidos de baño")

@@ -1,3 +1,4 @@
+import os
 
             # Funciones de los menus principales
 
@@ -107,8 +108,9 @@ def menu_inventario(cantidad):  # menu del inventario
             buscar_porDato(codigo_buscador, elemento="precio")
 
 
-    elif opcion_usuario2 == 4:    # menu de consulta por arhivo de texto plano
-        print("Trabajo en progreso...")
+        elif opcion_usuario2 == 4:  # menu de consulta por arhivo de texto plano
+            crear_archivo()
+
 
     elif opcion_usuario2 == 5:
         print("Saliendo del menu...")
@@ -248,8 +250,65 @@ def buscar_porDato(codigo_buscador, elemento):
 
 def mostrar_productos():
 
+    contador = 0  # este contador sirve para numerar los tipos de productos
+    for i in inventario:
+        print(f"({contador}) Nombre: {i['nombre']}", end=' , ')
+        print(f"Precio: {i['precio']}", end=' , ')
+        print(f"Cantidad: {i['cantidad']}", end=' , ')
+        print(f"Codigo: {i['codigo']}", end='  ')
+        print("")
+        contador += 1
 
-    while validacion == True:  # Este while nos permite crear un bucle al menu principal
+def modificar_producto(producto_escogido, nombre_producto, elemento):
+    producto_escogido[elemento] = nombre_producto
+    print(f"Completado, ahora el {elemento} es {nombre_producto}")
+
+
+def crear_archivo():
+
+    nombre = input("Ingresa el nombre que le deseas dar al archivo..")
+    ubicacion = "Archivos/" + nombre + ".txt"
+
+    print("El archivo se esta guardando....")
+
+    with open(ubicacion, "a", encoding="utf-8") as f:
+        f.write(mostrar_productos())
+        f.write("\n")
+    print("El archivo se ha guardado correctamente....")
+
+
+
+def mostrar_archivo():
+    pass
+
+
+
+def actualizar_archivo():
+    pass
+
+
+
+
+
+                # inicio del programa
+
+if __name__ == '__main__':
+
+    # inventario predeterminado productos
+
+    pantalonetas_azules = {"nombre": "Pantalonetas Azules", "precio": 12000, "cantidad": 10, "codigo": 1212}
+    bikinis_rojos = {"nombre": "Bikinis Rojos", "precio": 15000, "cantidad": 15, "codigo": 2222}
+    pantalonetas_verdes = {"nombre": "Pantalonetas Verdes", "precio": 12000, "cantidad": 10, "codigo": 1111}
+
+    inventario = [pantalonetas_azules, bikinis_rojos,pantalonetas_verdes]  # lista que almacena todos los direccionarios, "productos con sus datos"
+    cantidad = len(inventario)  # el metodo len nos da la longitud de indices del inventario, para saber su cantidad especifica de productos
+
+            # inventario reclamos e historial de ventas
+
+    historial_venta = []
+    reclamos_inventario = []
+
+    while True:  # Este while nos permite crear un bucle al menu principal
 
         print("Bienvenido al sistema en linea de vestidos de baño")
 
@@ -266,14 +325,13 @@ def mostrar_productos():
         if opcion_usuario == 1:
             menu_inventario(cantidad)
 
-
                 # menu de ventas
 
         elif opcion_usuario == 2:  # Este es el menu de ventas
             menu_ventas()
 
         elif opcion_usuario == 3:  # Este es el menu de reportes generales  esto se continuara hasta trabajar con archivos de texto plano
-            print("Trabajo en progreso: ")
+            menu_reportesGenerales()
 
             # menu de reclamos
 
@@ -284,8 +342,8 @@ def mostrar_productos():
             # salir del programa
 
         elif opcion_usuario == 5:  # esta es la opcion para cerrar el programa
-            validacion = False
             print("Saliendo del programa, !Gracias por preferirnos¡ ... ")
+            break
 
 
 

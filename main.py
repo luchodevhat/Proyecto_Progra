@@ -1,3 +1,4 @@
+import os
 
             # Funciones de los menus principales
 
@@ -107,8 +108,9 @@ def menu_inventario(cantidad):  # menu del inventario
             buscar_porDato(codigo_buscador, elemento="precio")
 
 
-    elif opcion_usuario2 == 4:    # menu de consulta por arhivo de texto plano
-        print("Trabajo en progreso...")
+        elif opcion_usuario2 == 4:  # menu de consulta por arhivo de texto plano
+            crear_archivo()
+
 
     elif opcion_usuario2 == 5:
         print("Saliendo del menu...")
@@ -260,6 +262,30 @@ def mostrar_productos():
 def modificar_producto(producto_escogido, nombre_producto, elemento):
     producto_escogido[elemento] = nombre_producto
     print(f"Completado, ahora el {elemento} es {nombre_producto}")
+
+
+def crear_archivo():
+
+    nombre = input("Ingresa el nombre que le deseas dar al archivo..")
+    ubicacion = "Archivos/" + nombre + ".txt"
+
+    print("El archivo se esta guardando....")
+
+    with open(ubicacion, "a", encoding="utf-8") as f:
+        f.write(mostrar_productos())
+        f.write("\n")
+    print("El archivo se ha guardado correctamente....")
+
+
+
+def mostrar_archivo():
+    pass
+
+
+
+def actualizar_archivo():
+    pass
+
 
 
 

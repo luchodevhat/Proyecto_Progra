@@ -91,25 +91,41 @@ def menu_inventario(cantidad):  # menu del inventario
         print("(1) Consultar por codigo")
         print("(2) Consulta general")
         print("(3) Consultar por precio")
-        print("(4) Desplegar a un archivo plano el inventario")
+        print("(4) Desplegar a un archivo plano el inventario completo")
 
         opcion_usuario2 = int(input("Digite la opcion que necesita: "))
 
         if opcion_usuario2 == 1:  # menu consulta por codigo
+
             codigo_buscador = int(input("Ingresa el codigo que buscas: "))
-            buscar_porDato(codigo_buscador, elemento="codigo")
+            producto = buscar_porDato(codigo_buscador, elemento="codigo")
+
+            pregunta_consulta = input("Ingresa 1 si deseas desplegar este inventario a un archivo plano: ")
+
+            if pregunta_consulta == "1":
+                crear_archivo(producto)
+
+
 
         elif opcion_usuario2 == 2:    # menu de consulta general
             print(f"Productos disponibles")
             mostrar_productos()
 
+
         elif opcion_usuario2 == 3:  # menu consulta por precio
+
             codigo_buscador = int(input("Ingresa el precio de producto que buscas: "))
-            buscar_porDato(codigo_buscador, elemento="precio")
+            producto = buscar_porDato(codigo_buscador, elemento="precio")
+
+            pregunta_consulta = input("Ingresa 1 si deseas desplegar este inventario a un archivo plano: ")
+
+            if pregunta_consulta == "1":
+                crear_archivo(producto)
 
 
         elif opcion_usuario2 == 4:  # menu de consulta por arhivo de texto plano
-            crear_archivo()
+
+            crear_archivo(inventario)
 
 
     elif opcion_usuario2 == 5:
@@ -243,14 +259,20 @@ def menu_reclamos(reclamos_inventario):
         # Funciones que sirven como herramientas para los menus, para no repetir codigo
 
 def buscar_porDato(codigo_buscador, elemento):
+    inventario_productoE = []   # esta lista sirve para guardar los datos buscados
+
     for i in inventario:
+
         if i[elemento] == codigo_buscador:
             print(f"El producto buscado es {i}")
+            inventario_productoE.append(i)
+            return inventario_productoE
 
 
 def mostrar_productos():
 
     contador = 0  # este contador sirve para numerar los tipos de productos
+
     for i in inventario:
         print(f"({contador}) Nombre: {i['nombre']}", end=' , ')
         print(f"Precio: {i['precio']}", end=' , ')
@@ -264,29 +286,44 @@ def modificar_producto(producto_escogido, nombre_producto, elemento):
     print(f"Completado, ahora el {elemento} es {nombre_producto}")
 
 
-def crear_archivo():
 
-    nombre = input("Ingresa el nombre que le deseas dar al archivo..")
+def crear_archivo(lista):
+
+    nombre = input("Ingresa el nombre que le deseas dar al archivo: ")
+
+
     ubicacion = "Archivos/" + nombre + ".txt"
 
     print("El archivo se esta guardando....")
 
     with open(ubicacion, "a", encoding="utf-8") as f:
-        f.write(mostrar_productos())
-        f.write("\n")
+
+        contador = 0  # este contador sirve para numerar los tipos de productos
+
+        for i in lista:
+            f.write(f"({contador}) Nombre: {i['nombre']} ")
+            f.write(f"Precio: {i['precio']} ")
+            f.write(f"Cantidad: {i['cantidad']} ")
+            f.write(f"Codigo: {i['codigo']} ")
+            contador += 1
+            f.write("\n")
+
     print("El archivo se ha guardado correctamente....")
 
 
 
-def mostrar_archivo():
-    pass
+def mostrar_archivo(nombre):
 
+    print(f"Cargando el contenido del archivo '{nombre}'....")
 
+    ubicacion = "Archivos/" + nombre + ".txt"
+    contenido = []
 
-def actualizar_archivo():
-    pass
-
-
+    with open(ubicacion, "r", encoding="utf-8") as f:
+        for line in f:
+            contenido.append(str(line))
+    print("El contenido del archivo es ")
+    print(contenido)
 
 
 

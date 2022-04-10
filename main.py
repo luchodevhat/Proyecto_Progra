@@ -105,8 +105,6 @@ def menu_inventario(cantidad):  # menu del inventario
             if pregunta_consulta == "1":
                 crear_archivo(producto)
 
-
-
         elif opcion_usuario2 == 2:    # menu de consulta general
             print(f"Productos disponibles")
             mostrar_productos()
@@ -187,6 +185,7 @@ def menu_ventas():
                                           "total": total, "descuento": 0}
 
                     historial_venta.append(venta_agregada)
+
                     print("nombre: ", venta_agregada.get("nombre"))
                     print("cedula: ", venta_agregada.get("cedula"))
                     print("telefono: ", venta_agregada.get("telefono"))
@@ -207,7 +206,68 @@ def menu_ventas():
 
 
 def menu_reportesGenerales():             # hasta trabajar con archivos planos se agregara este menu
-    pass
+
+    print("(1)  Promedio de ventas general")
+    print("(2)  Promedio de ventas por producto")
+    print("(3)  Ventas mas alta realizada")
+    print("(4)  Productos agotados")
+    print("(5)  Productos disponibles")
+
+    opcion_usuario5 = int(input("Digite la opcion que necesita: "))
+
+    if opcion_usuario5 == 1:
+
+        print("El promedio de ventas es el siguiente: ")
+        sumatoria = 0
+
+        for i in inventario:
+            sumatoria += i.get("cantidad")
+
+        promVentas = len(historial_venta) / cantidad
+
+        print("el promedio de ventas generales es: ", promVentas)
+
+
+    # pendiente
+    elif opcion_usuario5 == 2:
+        print("El promedio de ventas por producto es el siguiente")
+        pass
+
+
+    elif opcion_usuario5 == 3:
+        print("la venta mas alta realizada es la siguiente: ")
+
+        mayor = 0
+        nombre_producto = 0
+
+        for i in historial_venta:
+            if i.get("total") > mayor:
+                mayor = i.get("total")
+                nombre_producto = i.get("nombre")
+                tipo_producto = i.get("producto")
+
+        print(f"La venta mas alta realizada fue la de {nombre_producto}, producto = {tipo_producto}, con un total de {mayor}")
+
+
+    elif opcion_usuario5 == 4:
+        print("los productos agotados son los siguientes")
+
+
+        cantidad_agotados = 0
+
+        if len(inventario) != 0:
+            for i in inventario:
+                if i.get("cantidad") == 0:
+                    print(f"El producto {i.get('nombre')} esta agotado")
+                    cantidad_agotados += 1
+
+        if cantidad_agotados == 0:
+            print("No hay productos agotados..")
+
+
+    elif opcion_usuario5 == 5:
+        mostrar_productos()
+
 
 
 def menu_reclamos(reclamos_inventario):
@@ -256,7 +316,7 @@ def menu_reclamos(reclamos_inventario):
 
 
 
-        # Funciones que sirven como herramientas para los menus, para no repetir codigo
+# Funciones que sirven como herramientas para los menus, para no repetir codigo
 
 def buscar_porDato(codigo_buscador, elemento):
     inventario_productoE = []   # esta lista sirve para guardar los datos buscados
@@ -337,12 +397,22 @@ if __name__ == '__main__':
     bikinis_rojos = {"nombre": "Bikinis Rojos", "precio": 15000, "cantidad": 15, "codigo": 2222}
     pantalonetas_verdes = {"nombre": "Pantalonetas Verdes", "precio": 12000, "cantidad": 10, "codigo": 1111}
 
+
     inventario = [pantalonetas_azules, bikinis_rojos,pantalonetas_verdes]  # lista que almacena todos los direccionarios, "productos con sus datos"
     cantidad = len(inventario)  # el metodo len nos da la longitud de indices del inventario, para saber su cantidad especifica de productos
 
             # inventario reclamos e historial de ventas
 
-    historial_venta = []
+    historial_venta = [{'nombre': 'Alejandro',
+                        'cedula': 777777,
+                        'telefono': 33333,
+                        'direccion': '265 este de nose',
+                        'producto': 'Pantalonetas Azules',
+                        'cantidad': 3,
+                        'total': 36000,
+                        'descuento': 0}
+                       ]
+
     reclamos_inventario = []
 
     while True:  # Este while nos permite crear un bucle al menu principal

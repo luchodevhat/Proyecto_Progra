@@ -1,0 +1,11 @@
+-----------Factura Sistema Pyme--------------
+nombre: alejandro 
+cedula: 453454 
+telefono: 232323 
+direccion: oeste 
+Producto: Pantalonetas Verdes 
+cantidad: 5 
+descuento: 15% 
+
+------Total----------
+total: 51000.0 

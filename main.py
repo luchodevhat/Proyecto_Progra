@@ -186,6 +186,8 @@ def menu_ventas():
 
                     historial_venta.append(venta_agregada)
 
+                    print("La factura es la siguiente: ")
+
                     print("nombre: ", venta_agregada.get("nombre"))
                     print("cedula: ", venta_agregada.get("cedula"))
                     print("telefono: ", venta_agregada.get("telefono"))
@@ -196,9 +198,35 @@ def menu_ventas():
                     print("total: ", venta_agregada.get("total"))
                     temp = i.get("cantidad")
                     temp = temp - cantidad
-
                     i["cantidad"] = temp
+
+
+                    nombre_archivo = input("Ingresa el nombre que le deseas dar a la factura: ")
+                    ubicacion = "Archivos/" + nombre_archivo + ".txt"
+
+                    print("El archivo se esta guardando....")
+
+                    with open(ubicacion, "a", encoding="utf-8") as f:
+
+                        f.write("-----------Factura Sistema Pyme--------------")
+                        f.write("\n")
+                        f.write(f"nombre: {venta_agregada.get('nombre')} \n")
+                        f.write(f"cedula: {venta_agregada.get('cedula')} \n")
+                        f.write(f"telefono: {venta_agregada.get('telefono')} \n")
+                        f.write(f"direccion: {venta_agregada.get('direccion')} \n")
+                        f.write(f"Producto: {venta_agregada.get('producto')} \n")
+                        f.write(f"cantidad: {venta_agregada.get('cantidad')} \n")
+                        f.write(f"descuento: {venta_agregada.get('descuento')} \n")
+                        f.write("\n")
+                        f.write("------Total----------")
+                        f.write("\n")
+                        f.write(f"total: {venta_agregada.get('total')} \n")
+                        f.close()
+
+                        print("La informacion fue grabada correctamente! ")
+
                     venta_agregada = {}
+
 
         if x == 0:  # Si la funcion termina  y x es igual a 0 significa que no se encontro ese producto
             print("Este producto no existe")
@@ -315,7 +343,6 @@ def menu_reclamos(reclamos_inventario):
 
 
 
-
 # Funciones que sirven como herramientas para los menus, para no repetir codigo
 
 def buscar_porDato(codigo_buscador, elemento):
@@ -387,7 +414,7 @@ def mostrar_archivo(nombre):
 
 
 
-                # inicio del programa
+# inicio del programa
 
 if __name__ == '__main__':
 

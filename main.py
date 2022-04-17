@@ -258,8 +258,41 @@ def menu_reportesGenerales():             # hasta trabajar con archivos planos s
 
     # pendiente
     elif opcion_usuario5 == 2:
-        print("El promedio de ventas por producto es el siguiente")
-        pass
+
+        print("El promedio de ventas por producto es el siguiente: ")
+
+        sumatoria_producto = 0   # sirve para llevar el conteo del total vendido en dinero
+        sumador_conteo = 0   # sirve para llevar el conteo del numero de repeticiones de los for
+        longitud_producto = 0    # sirve para llevar el conteo de la cantidad de productos
+        historial_analizados = []  # sirve para llevar el historial de los productos ya analizados y no repetir el print del producto
+
+        for i in historial_venta:
+
+            if sumador_conteo == 0:
+                for k in historial_venta:
+                    if i.get("producto") == k.get("producto"):
+                        sumatoria_producto += k.get("total")
+                        longitud_producto += k.get("cantidad")
+                        historial_analizados.append(i.get("producto"))
+                        sumador_conteo += 1
+                print(f"Para el producto {i.get('producto')} su promedio es de {sumatoria_producto / longitud_producto}")
+
+                sumatoria_producto = 0
+                longitud_producto = 0
+
+
+            if i.get("producto") not in historial_analizados:
+                for k in historial_venta:
+                    if i.get("producto") == k.get("producto"):
+                        sumatoria_producto += k.get("total")
+                        longitud_producto += k.get("cantidad")
+                        historial_analizados.append(i.get("producto"))
+                        sumador_conteo += 1
+                print(f"Para el producto {i.get('producto')} su promedio es de {sumatoria_producto / longitud_producto}")
+
+                sumatoria_producto = 0
+                longitud_producto = 0
+
 
 
     elif opcion_usuario5 == 3:
@@ -368,10 +401,10 @@ def mostrar_productos():
         print("")
         contador += 1
 
+
 def modificar_producto(producto_escogido, nombre_producto, elemento):
     producto_escogido[elemento] = nombre_producto
     print(f"Completado, ahora el {elemento} es {nombre_producto}")
-
 
 
 def crear_archivo(lista):
@@ -398,7 +431,6 @@ def crear_archivo(lista):
     print("El archivo se ha guardado correctamente....")
 
 
-
 def mostrar_archivo(nombre):
 
     print(f"Cargando el contenido del archivo '{nombre}'....")
@@ -411,7 +443,6 @@ def mostrar_archivo(nombre):
             contenido.append(str(line))
     print("El contenido del archivo es ")
     print(contenido)
-
 
 
 # inicio del programa
@@ -464,6 +495,8 @@ if __name__ == '__main__':
         elif opcion_usuario == 2:  # Este es el menu de ventas
             menu_ventas()
 
+            # menu de reportes generales
+
         elif opcion_usuario == 3:  # Este es el menu de reportes generales  esto se continuara hasta trabajar con archivos de texto plano
             menu_reportesGenerales()
 
@@ -478,15 +511,5 @@ if __name__ == '__main__':
         elif opcion_usuario == 5:  # esta es la opcion para cerrar el programa
             print("Saliendo del programa, !Gracias por preferirnos¡ ... ")
             break
-
-
-
-
-
-
-
-
-
-
 
 

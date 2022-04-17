@@ -135,9 +135,8 @@ def menu_ventas():
     print("Bienvenido al menu de ventas: ")
 
     print("(1)  Mostrar productos disponibles: ")
-    print("(2)  Realizar la venta: ")
-    print("(3)  Generar factura final ")
-    print("(4)  Devolverse al menu principal:")
+    print("(2)  Realizar la venta y generar factura: ")
+    print("(3)  Devolverse al menu principal:")
 
     opcion_usuario2 = int(input("Digite la opcion que necesita: "))
 
@@ -202,28 +201,27 @@ def menu_ventas():
 
 
                     nombre_archivo = input("Ingresa el nombre que le deseas dar a la factura: ")
-                    ubicacion = "Archivos/" + nombre_archivo + ".txt"
+
+                    file = open(nombre_archivo, "w")
 
                     print("El archivo se esta guardando....")
 
-                    with open(ubicacion, "a", encoding="utf-8") as f:
+                    file.write("-----------Factura Sistema Pyme--------------")
+                    file.write("\n")
+                    file.write(f"nombre: {venta_agregada.get('nombre')} \n")
+                    file.write(f"cedula: {venta_agregada.get('cedula')} \n")
+                    file.write(f"telefono: {venta_agregada.get('telefono')} \n")
+                    file.write(f"direccion: {venta_agregada.get('direccion')} \n")
+                    file.write(f"Producto: {venta_agregada.get('producto')} \n")
+                    file.write(f"cantidad: {venta_agregada.get('cantidad')} \n")
+                    file.write(f"descuento: {venta_agregada.get('descuento')} \n")
+                    file.write("\n")
+                    file.write("------Total----------")
+                    file.write("\n")
+                    file.write(f"total: {venta_agregada.get('total')} \n")
+                    file.close()
 
-                        f.write("-----------Factura Sistema Pyme--------------")
-                        f.write("\n")
-                        f.write(f"nombre: {venta_agregada.get('nombre')} \n")
-                        f.write(f"cedula: {venta_agregada.get('cedula')} \n")
-                        f.write(f"telefono: {venta_agregada.get('telefono')} \n")
-                        f.write(f"direccion: {venta_agregada.get('direccion')} \n")
-                        f.write(f"Producto: {venta_agregada.get('producto')} \n")
-                        f.write(f"cantidad: {venta_agregada.get('cantidad')} \n")
-                        f.write(f"descuento: {venta_agregada.get('descuento')} \n")
-                        f.write("\n")
-                        f.write("------Total----------")
-                        f.write("\n")
-                        f.write(f"total: {venta_agregada.get('total')} \n")
-                        f.close()
-
-                        print("La informacion fue grabada correctamente! ")
+                    print("La informacion fue grabada correctamente! ")
 
                     venta_agregada = {}
 
@@ -231,7 +229,8 @@ def menu_ventas():
         if x == 0:  # Si la funcion termina  y x es igual a 0 significa que no se encontro ese producto
             print("Este producto no existe")
 
-
+    elif opcion_usuario2 == 3:
+        print("Volviendo al menu...")
 
 def menu_reportesGenerales():             # hasta trabajar con archivos planos se agregara este menu
 
@@ -412,21 +411,20 @@ def crear_archivo(lista):
     nombre = input("Ingresa el nombre que le deseas dar al archivo: ")
 
 
-    ubicacion = "Archivos/" + nombre + ".txt"
+    file = open(nombre, "w")
 
     print("El archivo se esta guardando....")
 
-    with open(ubicacion, "a", encoding="utf-8") as f:
+    contador = 0  # este contador sirve para numerar los tipos de productos
 
-        contador = 0  # este contador sirve para numerar los tipos de productos
+    for i in lista:
+        file.write(f"({contador}) Nombre: {i['nombre']} ")
+        file.write(f"Precio: {i['precio']} ")
+        file.write(f"Cantidad: {i['cantidad']} ")
+        file.write(f"Codigo: {i['codigo']} ")
+        file.write("\n")
+        contador += 1
 
-        for i in lista:
-            f.write(f"({contador}) Nombre: {i['nombre']} ")
-            f.write(f"Precio: {i['precio']} ")
-            f.write(f"Cantidad: {i['cantidad']} ")
-            f.write(f"Codigo: {i['codigo']} ")
-            contador += 1
-            f.write("\n")
 
     print("El archivo se ha guardado correctamente....")
 
